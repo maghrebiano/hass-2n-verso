@@ -1,0 +1,5 @@
+"""Constants for the 2N Verso integration."""
+DOMAIN = "twon_verso"
+CONF_HOST = "host"
+CONF_USERNAME = "username"
+CONF_PASSWORD = "password"
