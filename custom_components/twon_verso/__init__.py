@@ -32,28 +32,18 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
                 password=password,
             ),
         )
+        hass.data[DOMAIN][entry.entry_id] = verso
+        hass.config_entries.async_setup_platforms(entry, PLATFORMS)
     except Exception as err:
-        _LOGGER.error("Failed to connect to 2N Verso: %s", err)
+        _LOGGER.error("Error setting up 2N Verso: %s", err)
         return False
-
-    hass.data[DOMAIN][entry.entry_id] = verso
-
-    for platform in PLATFORMS:
-        hass.async_create_task(
-            hass.config_entries.async_forward_entry_setup(entry, platform)
-        )
 
     return True
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry):
     """Unload a config entry."""
-    unload_ok = await hass.config_entries.async_forward_entry_unload(entry, "switch")
+    unload_ok = await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
     if unload_ok:
         hass.data[DOMAIN].pop(entry.entry_id)
-    return unload_ok
 
-async def async_remove_entry(hass: HomeAssistant, entry: ConfigEntry):
-    """Remove a config entry."""
-    _LOGGER.info("Removing 2N Verso entry: %s", entry.entry_id)
-    if entry.entry_id in hass.data[DOMAIN]:
-        hass.data[DOMAIN].pop(entry.entry_id)
+    return unload_ok
