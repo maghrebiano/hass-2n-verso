@@ -1,8 +1,8 @@
 {
-  "domain": "2n_verso",
+  "domain": "hass-2n-verso",
   "name": "2N Verso",
   "version": "1.0.0",
-  "documentation": "https://www.example.com/documentation",
+  "documentation": "https://github.com/maghrebiano/hass-2n-verso",
   "requirements": [
     "aiohttp>=3.7.4"
   ],
@@ -11,5 +11,6 @@
     "@votre-utilisateur"
   ],
   "config_flow": true,
+  "integration_type": "device",
   "iot_class": "local_polling"
 }
