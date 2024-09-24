@@ -1,0 +1,104 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configure 2N Verso",
+        "data": {
+          "host": "Intercom IP address",
+          "username": "Username",
+          "password": "Password"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Cannot connect",
+      "already_configured": "Intercom is already configured"
+    },
+    "abort": {
+      "already_configured": "Intercom is already configured"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "2N Verso Options",
+        "data": {
+          "host": "Intercom IP address",
+          "username": "Username",
+          "password": "Password"
+        }
+      }
+    }
+  },
+  "services": {
+    "dial_call": {
+      "name": "Dial Call",
+      "description": "Initiate an outgoing call.",
+      "fields": {
+        "number": {
+          "name": "Number",
+          "description": "The phone number to dial."
+        },
+        "users": {
+          "name": "Users",
+          "description": "The users to call."
+        }
+      }
+    },
+    "answer_call": {
+      "name": "Answer Call",
+      "description": "Answer an incoming call.",
+      "fields": {
+        "session": {
+          "name": "Session",
+          "description": "The active incoming call identifier."
+        }
+      }
+    },
+    "hangup_call": {
+      "name": "Hang Up Call",
+      "description": "Hang up an active incoming or outgoing call.",
+      "fields": {
+        "session": {
+          "name": "Session",
+          "description": "The active call identifier."
+        },
+        "reason": {
+          "name": "Reason",
+          "description": "The reason for ending the call.",
+          "values": {
+            "normal": "Normal",
+            "rejected": "Rejected",
+            "busy": "Busy"
+          }
+        }
+      }
+    },
+    "camera_snapshot": {
+      "name": "Camera Snapshot",
+      "description": "Download an image from the internal or external IP camera.",
+      "fields": {
+        "width": {
+          "name": "Width",
+          "description": "The horizontal resolution of the JPEG image in pixels."
+        },
+        "height": {
+          "name": "Height",
+          "description": "The vertical resolution of the JPEG image in pixels."
+        },
+        "source": {
+          "name": "Source",
+          "description": "The video source identifier (internal or external)."
+        },
+        "fps": {
+          "name": "FPS",
+          "description": "The frame rate for the snapshot."
+        },
+        "time": {
+          "name": "Time",
+          "description": "The snapshot time in the intercom memory."
+        }
+      }
+    }
+  }
+}
