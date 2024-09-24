@@ -1,0 +1,49 @@
+dial_call:
+  description: "Initiate an outgoing call."
+  fields:
+    number:
+      description: "The phone number to dial."
+      example: "123456789"
+    users:
+      description: "The users to call."
+      example: "user1,user2"
+
+answer_call:
+  description: "Answer an incoming call."
+  fields:
+    session:
+      description: "The active incoming call identifier."
+      example: 3
+
+hangup_call:
+  description: "Hang up an active incoming or outgoing call."
+  fields:
+    session:
+      description: "The active call identifier."
+      example: 4
+    reason:
+      description: "The reason for ending the call."
+      example: "normal"
+      values:
+        - normal
+        - rejected
+        - busy
+
+camera_snapshot:
+  description: "Download an image from the internal or external IP camera."
+  fields:
+    width:
+      description: "The horizontal resolution of the JPEG image in pixels."
+      example: 640
+    height:
+      description: "The vertical resolution of the JPEG image in pixels."
+      example: 480
+    source:
+      description: "The video source identifier (internal or external)."
+      example: "internal"
+    fps:
+      description: "The frame rate for the snapshot."
+      example: 1
+    time:
+      description: "The snapshot time in the intercom memory."
+      example: -5
