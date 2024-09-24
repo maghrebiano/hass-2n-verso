@@ -1,0 +1,104 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configurer 2N Verso",
+        "data": {
+          "host": "Adresse IP de l'interphone",
+          "username": "Nom d'utilisateur",
+          "password": "Mot de passe"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Impossible de se connecter",
+      "already_configured": "L'interphone est déjà configuré"
+    },
+    "abort": {
+      "already_configured": "L'interphone est déjà configuré"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Options de 2N Verso",
+        "data": {
+          "host": "Adresse IP de l'interphone",
+          "username": "Nom d'utilisateur",
+          "password": "Mot de passe"
+        }
+      }
+    }
+  },
+  "services": {
+    "dial_call": {
+      "name": "Composer un appel",
+      "description": "Initier un appel sortant.",
+      "fields": {
+        "number": {
+          "name": "Numéro",
+          "description": "Le numéro de téléphone à composer."
+        },
+        "users": {
+          "name": "Utilisateurs",
+          "description": "Les utilisateurs à appeler."
+        }
+      }
+    },
+    "answer_call": {
+      "name": "Répondre à un appel",
+      "description": "Répondre à un appel entrant.",
+      "fields": {
+        "session": {
+          "name": "Session",
+          "description": "L'identifiant de l'appel entrant actif."
+        }
+      }
+    },
+    "hangup_call": {
+      "name": "Raccrocher un appel",
+      "description": "Raccrocher un appel actif (entrant ou sortant).",
+      "fields": {
+        "session": {
+          "name": "Session",
+          "description": "L'identifiant de l'appel actif."
+        },
+        "reason": {
+          "name": "Raison",
+          "description": "La raison de la fin de l'appel.",
+          "values": {
+            "normal": "Normal",
+            "rejected": "Rejeté",
+            "busy": "Occupé"
+          }
+        }
+      }
+    },
+    "camera_snapshot": {
+      "name": "Instantané de la caméra",
+      "description": "Télécharger une image depuis la caméra interne ou externe.",
+      "fields": {
+        "width": {
+          "name": "Largeur",
+          "description": "La résolution horizontale de l'image JPEG en pixels."
+        },
+        "height": {
+          "name": "Hauteur",
+          "description": "La résolution verticale de l'image JPEG en pixels."
+        },
+        "source": {
+          "name": "Source",
+          "description": "L'identifiant de la source vidéo (interne ou externe)."
+        },
+        "fps": {
+          "name": "FPS",
+          "description": "Le taux de trame pour l'instantané."
+        },
+        "time": {
+          "name": "Temps",
+          "description": "Le temps de l'instantané dans la mémoire de l'interphone."
+        }
+      }
+    }
+  }
+}
