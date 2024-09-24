@@ -1,27 +1,22 @@
-"""Support for 2N Verso switch."""
 from homeassistant.components.switch import SwitchEntity
-from homeassistant.config_entries import ConfigEntry
-from homeassistant.core import HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback
-
-from py2n.exceptions import Py2NError
-
 from .const import DOMAIN
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback):
-    """Set up the 2N Verso switch."""
+async def async_setup_entry(hass, entry, async_add_entities):
+    """Set up 2N Verso switch based on a config entry."""
     verso = hass.data[DOMAIN][entry.entry_id]
-    async_add_entities([VersoDoorSwitch(verso)], True)
+    async_add_entities([VersoSwitch(verso)])
 
-class VersoDoorSwitch(SwitchEntity):
-    """Representation of a 2N Verso door switch."""
+class VersoSwitch(SwitchEntity):
+    """Representation of a 2N Verso switch."""
 
     def __init__(self, verso):
-        """Initialize the switch."""
         self._verso = verso
         self._is_on = False
-        self._attr_name = "2N Verso Door"
-        self._attr_unique_id = f"{self._verso.serial_number}_door_switch"
+
+    @property
+    def name(self):
+        """Return the name of the switch."""
+        return "2N Verso Switch"
 
     @property
     def is_on(self):
@@ -30,24 +25,12 @@ class VersoDoorSwitch(SwitchEntity):
 
     async def async_turn_on(self, **kwargs):
         """Turn the switch on."""
-        try:
-            await self._verso.switch.control(1, True)  # 1 is typically the ID for the main door switch
-            self._is_on = True
-        except Py2NError as err:
-            _LOGGER.error("Failed to turn on switch: %s", err)
+        await self._verso.turn_on()
+        self._is_on = True
+        self.async_write_ha_state()
 
     async def async_turn_off(self, **kwargs):
         """Turn the switch off."""
-        try:
-            await self._verso.switch.control(1, False)
-            self._is_on = False
-        except Py2NError as err:
-            _LOGGER.error("Failed to turn off switch: %s", err)
-
-    async def async_update(self):
-        """Update switch status."""
-        try:
-            status = await self._verso.switch.get_status(1)
-            self._is_on = status.active
-        except Py2NError as err:
-            _LOGGER.error("Failed to update switch status: %s", err)
+        await self._verso.turn_off()
+        self._is_on = False
+        self.async_write_ha_state()
