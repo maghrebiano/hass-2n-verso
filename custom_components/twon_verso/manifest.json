@@ -1,0 +1,10 @@
+{
+  "domain": "twon_verso",
+  "name": "2N Verso Intercom",
+  "documentation": "https://github.com/votre-nom-utilisateur/hass-2n-verso",
+  "dependencies": [],
+  "codeowners": ["@votre-nom-utilisateur"],
+  "requirements": ["py2n==0.0.9"],
+  "iot_class": "local_polling",
+  "version": "0.1.0"
+}
